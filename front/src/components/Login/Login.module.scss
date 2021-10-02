@@ -1,0 +1,11 @@
+$form-size: 420px;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: $form-size;
+  min-height: $form-size;
+  padding: 1rem;
+  margin: 3rem auto auto;
+}

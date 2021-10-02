@@ -1,0 +1,44 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": "src",
+    "target": "es5",
+    "lib": [
+      "es5",
+      "es6",
+      "es7",
+      "es2019",
+      "dom"
+    ],
+    "sourceMap": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noUnusedLocals": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src",
+    "**/*.ts",
+    "**/*.tsx",
+    "config-overrides.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

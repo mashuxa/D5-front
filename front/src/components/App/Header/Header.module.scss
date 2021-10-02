@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  & > * {
+    width: unset !important;
+
+    &:last-child {
+      margin-left: auto !important;
+    }
+  }
+}
