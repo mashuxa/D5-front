@@ -21,7 +21,7 @@ const App: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (data) {
-      setUser(data.getUser);
+      setUser(data.user);
     }
   }, [updateUserData, setUser, data]);
 

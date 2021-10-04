@@ -1,23 +1,48 @@
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+import { Grid } from "@material-ui/core";
+import React, { useState } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_POPULAR_MOVIES, GET_UPCOMING_MOVIES } from "../../queries/query";
+import { IMovieProps } from "./Section/MovieCard/MovieCard";
+import Section from "./Section/Section";
 
-const Main = () => {
+interface IQueryResult {
+  results: IMovieProps[];
+  total_pages: number;
+}
+
+interface IPopularQuery {
+  popularMovies: IQueryResult;
+}
+interface IUpcomingQuery {
+  upcomingMovies: IQueryResult;
+}
+
+const Main: React.FC = () => {
+  const [popularPage, setPopularPage] = useState<number>(1);
+  const [upcomingPage, setUpcomingPage] = useState<number>(1);
+  const { data: popular } = useQuery<IPopularQuery>(GET_POPULAR_MOVIES, {
+    variables: { page: popularPage }
+  });
+  const { data: upcoming } = useQuery<IUpcomingQuery>(GET_UPCOMING_MOVIES, {
+    variables: { page: upcomingPage }
+  });
+
   return (
-    <Grid container>
-      <Grid item xs={12} sm={12} md={6}>
-        <h1>Your Story Starts With Us.</h1>
-        <h4>
-          Every landing page needs a small description after the big bold
-          title, that{"'"}s why we added this text here. Add here all the
-          information that can make you or your product create the first
-          impression.
-        </h4>
-        <br/>
-        <Button>
-          <i className="fas fa-play"/>
-          Watch video
-        </Button>
-      </Grid>
+    <Grid container spacing="20">
+      <Section
+        title={"MOST POPULAR"}
+        data={popular?.popularMovies.results}
+        page={popularPage}
+        setPage={setPopularPage}
+        totalPages={popular?.popularMovies.total_pages}
+      />
+      <Section
+        title={"MOST UPCOMING"}
+        data={upcoming?.upcomingMovies.results}
+        page={upcomingPage}
+        setPage={setUpcomingPage}
+        totalPages={popular?.popularMovies.total_pages}
+      />
     </Grid>
   );
 }

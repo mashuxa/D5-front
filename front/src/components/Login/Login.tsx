@@ -23,7 +23,7 @@ const initialValues = {
 };
 
 const Login: React.FC = () => {
-  const [logIn] = useMutation(LOGIN);
+  const [login] = useMutation(LOGIN);
   const [registration] = useMutation(REGISTRATION);
   const { setUser } = useContext(UserContext);
   const history = useHistory();
@@ -31,10 +31,10 @@ const Login: React.FC = () => {
   const toggleForm = useCallback(() => setIsLogin((value) => !value), [setIsLogin]);
   const onSubmit = useCallback(async ({ email, password }: IFormValues) => {
     if (isLogin) {
-      const result = await logIn({ variables: { email, password } });
+      const result = await login({ variables: { email, password } });
 
       if (result) {
-        const { _id, ...userData } = result.data.logIn;
+        const { _id, ...userData } = result.data.login;
 
         setUser({ ...userData, id: _id });
         localStorage.setItem(STORAGE_KEY_ID, "true");
@@ -44,7 +44,7 @@ const Login: React.FC = () => {
       await registration({ variables: { record: { email, password } } });
       toggleForm();
     }
-  }, [logIn, setUser, history, isLogin, registration, toggleForm]);
+  }, [login, setUser, history, isLogin, registration, toggleForm]);
 
   const validate = useCallback(({ repeatPassword, ...values }) => validation(isLogin ? values : { repeatPassword, ...values }), [isLogin]);
   const formik = useFormik({ initialValues, onSubmit, validate, validateOnBlur: true });

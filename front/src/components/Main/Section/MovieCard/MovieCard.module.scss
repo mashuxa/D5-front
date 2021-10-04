@@ -1,0 +1,23 @@
+@import "../../../../styles/mixins";
+
+.actions {
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.title {
+  @include overflow(1);
+
+  font-size: 2rem;
+}
+
+.text {
+  @include overflow(5);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 220px;
+}

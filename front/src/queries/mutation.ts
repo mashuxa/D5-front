@@ -12,7 +12,7 @@ export const REGISTRATION = gql(`
 
 export const LOGIN = gql(`
     mutation($password: String, $email: String) {
-        logIn(password: $password, email: $email) {
+        login(password: $password, email: $email) {
             email
             _id
         }
