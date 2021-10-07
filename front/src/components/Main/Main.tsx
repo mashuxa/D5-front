@@ -2,19 +2,14 @@ import { Grid } from "@material-ui/core";
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_POPULAR_MOVIES, GET_UPCOMING_MOVIES } from "../../queries/query";
-import { IMovieProps } from "./Section/MovieCard/MovieCard";
 import Section from "./Section/Section";
-
-interface IQueryResult {
-  results: IMovieProps[];
-  total_pages: number;
-}
+import { IMoviesResult } from "../MovieCard/MovieCard";
 
 interface IPopularQuery {
-  popularMovies: IQueryResult;
+  popularMovies: IMoviesResult;
 }
 interface IUpcomingQuery {
-  upcomingMovies: IQueryResult;
+  upcomingMovies: IMoviesResult;
 }
 
 const Main: React.FC = () => {

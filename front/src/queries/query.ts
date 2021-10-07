@@ -68,7 +68,7 @@ export const GET_UPCOMING_MOVIES = gql(`
 `);
 
 export const GET_MOVIES_BY_FILTER = gql(`
-    query {
+    query Query($filters: MovieFilters) {
       moviesByFilters(filters: $filters) {
         page
         results {

@@ -1,9 +1,9 @@
 import { Card, Button, Typography, CardMedia, CardContent, CardActions } from "@material-ui/core";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { THE_MOVIE_LINK } from "../../../../constants/common";
+import { THE_MOVIE_LINK } from "../../constants/common";
 import styles from './MovieCard.module.scss';
-import { paths } from "../../../../constants/routes";
+import { paths } from "../../constants/routes";
 
 export interface IMovieProps {
   id: number;
@@ -19,6 +19,11 @@ export interface IMovieProps {
   vote_count: number;
   video: boolean;
   vote_average: number;
+}
+
+export interface IMoviesResult {
+  results: IMovieProps[];
+  total_pages: number;
 }
 
 const MovieCard: React.FC<IMovieProps> = ({ id, title, overview, poster_path}) => (
