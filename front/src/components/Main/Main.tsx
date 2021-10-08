@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_POPULAR_MOVIES, GET_UPCOMING_MOVIES } from "../../queries/query";
+import { GET_POPULAR_MOVIES, GET_UPCOMING_MOVIES } from "../../queries/movie";
 import Section from "./Section/Section";
 import { IMoviesResult } from "../MovieCard/MovieCard";
 

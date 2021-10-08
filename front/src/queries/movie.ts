@@ -1,22 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const GET_USER = gql(`
-    query {
-      user {
-        email
-        _id
-      }
-    }
-`);
-
-export const LOGOUT = gql(`
-    query {
-      logout {
-        email
-      }
-    }
-`);
-
 export const GET_POPULAR_MOVIES = gql(`
     query Query($page: Int) {
       popularMovies(page: $page) {
@@ -90,15 +73,4 @@ export const GET_MOVIES_BY_FILTER = gql(`
         total_pages
         }
       }
-`);
-
-export const GET_GENRES = gql(`
-    query {
-      genres {
-        genres {
-          id
-          name
-        }
-      }
-    }
 `);

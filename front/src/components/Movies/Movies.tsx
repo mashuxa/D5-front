@@ -11,7 +11,8 @@ import {
 import { ArrowDropUp, ArrowDropDown } from "@material-ui/icons";
 import { useFormik } from 'formik';
 import { useQuery } from "@apollo/client";
-import { GET_GENRES, GET_MOVIES_BY_FILTER } from "../../queries/query";
+import { GET_MOVIES_BY_FILTER } from "../../queries/movie";
+import { GET_GENRES } from "../../queries/genres";
 import { OLDEST_YEAR } from "../../constants/common";
 import { getRangeYear } from "../../utils/dates";
 import sortValues from "../../constants/sortValues";

@@ -7,7 +7,7 @@ import styles from "./Header.module.scss";
 import { NavLink } from "react-router-dom";
 import { STORAGE_KEY_ID } from "../../../constants/common";
 import { useLazyQuery } from "@apollo/client";
-import { LOGOUT } from "../../../queries/query";
+import { LOGOUT } from "../../../queries/user";
 
 const Header: React.FC = () => {
   const { user, setUser } = useContext(UserContext);

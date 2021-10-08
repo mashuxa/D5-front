@@ -1,5 +1,14 @@
 import { gql } from "@apollo/client";
 
+export const GET_USER = gql(`
+    query {
+      user {
+        email
+        _id
+      }
+    }
+`);
+
 export const REGISTRATION = gql(`
     mutation($record: CreateOneUserInput!) {
       registration(record: $record) {
@@ -16,5 +25,13 @@ export const LOGIN = gql(`
             email
             _id
         }
+    }
+`);
+
+export const LOGOUT = gql(`
+    query {
+      logout {
+        email
+      }
     }
 `);

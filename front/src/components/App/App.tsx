@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect } from "react";
 
 import Header from "./Header/Header";
 import { useLazyQuery } from "@apollo/client";
-import { GET_USER } from "../../queries/query";
+import { GET_USER } from "../../queries/user";
 import { STORAGE_KEY_ID } from "../../constants/common";
 import { UserContext } from "../UserContext/UserContext";
 

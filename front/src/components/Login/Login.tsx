@@ -3,7 +3,7 @@ import { TextField, Button, Paper, Typography, Divider } from "@material-ui/core
 import { useFormik } from 'formik';
 import styles from './Login.module.scss';
 import { useMutation } from "@apollo/client";
-import { LOGIN, REGISTRATION } from "../../queries/mutation";
+import { LOGIN, REGISTRATION } from "../../queries/user";
 import { UserContext } from "../UserContext/UserContext";
 import { useHistory } from "react-router-dom";
 import { paths } from "../../constants/routes";
@@ -50,7 +50,6 @@ const Login: React.FC = () => {
   const formik = useFormik({ initialValues, onSubmit, validate, validateOnBlur: true });
 
   // @todo: добавить валидацию на формы
-  // @todo: обработка ошибки 401, 403 (стереть данные пользователя - контекст, localStorage)
 
   return (
     <form onSubmit={formik.handleSubmit}>
