@@ -12,7 +12,7 @@ interface IWishlist {
   movies: number[];
 }
 
-interface IWishlistsQuery {
+export interface IWishlistsQuery {
   wishlists: IWishlist[];
 }
 

@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  margin: 1rem;
+}
+
+.select {
+  width: 200px;
+}
+
+.image {
+  width: 220px;
+}
+
+.overview {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  margin-left: 1rem;
+}
