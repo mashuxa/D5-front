@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.name {
+  padding-right: 1rem;
+  margin-right: auto;
+}
+
+.btn {
+  border: 2px solid red;
+  margin-left: 0.5rem !important;
+}
