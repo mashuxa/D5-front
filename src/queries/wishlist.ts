@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GET_WISHLIST = gql(`
-    query Query($id: String) {
+    query($id: String) {
       wishlist(id: $id) {
         _id
         name
@@ -11,7 +11,7 @@ export const GET_WISHLIST = gql(`
 `);
 
 export const GET_WISHLISTS = gql(`
-    query {
+    query{
       wishlists {
         _id
         name

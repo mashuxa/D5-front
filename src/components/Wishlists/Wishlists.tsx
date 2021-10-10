@@ -6,7 +6,7 @@ import { Button, Grid, Paper, Typography } from "@material-ui/core";
 import { Add, RotateLeft } from "@material-ui/icons";
 import styles from "./Wishlists.module.scss";
 
-interface IWishlist {
+export interface IWishlist {
   _id: string;
   name: string;
   movies: number[];

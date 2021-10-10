@@ -42,7 +42,7 @@ const MovieCard: React.FC<IMovieProps> = ({ id, title, overview, poster_path}) =
       </Typography>
     </CardContent>
     <CardActions className={styles.actions}>
-      <Button size="small" component={NavLink} to={paths.movie.replace(':id', id.toString())}>Show More</Button>
+      <Button size="small" component={NavLink} to={paths.movie.replace(':id', id.toString())} variant="outlined">Show More</Button>
      </CardActions>
   </Card>
 );

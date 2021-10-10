@@ -49,8 +49,6 @@ const Login: React.FC = () => {
   const validate = useCallback(({ repeatPassword, ...values }) => validation(isLogin ? values : { repeatPassword, ...values }), [isLogin]);
   const formik = useFormik({ initialValues, onSubmit, validate, validateOnBlur: true });
 
-  // @todo: добавить валидацию на формы
-
   return (
     <form onSubmit={formik.handleSubmit}>
       <Paper className={styles.wrapper}>

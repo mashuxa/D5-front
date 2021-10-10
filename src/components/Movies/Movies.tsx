@@ -31,7 +31,7 @@ interface IGenresQuery {
   };
 }
 
-interface IMoviesByFilterQuery {
+export interface IMoviesByFilterQuery {
   moviesByFilters: IMoviesResult;
 }
 

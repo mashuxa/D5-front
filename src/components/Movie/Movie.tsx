@@ -19,7 +19,7 @@ import { THE_MOVIE_LINK } from "../../constants/common";
 import styles from "./Movie.module.scss";
 import { Favorite } from "@material-ui/icons";
 
-interface IParams {
+export interface IParams {
   id: string;
 }
 
