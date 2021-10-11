@@ -1,0 +1,68 @@
+{
+  "ru": {
+    "translation": {
+      "pages": {
+        "login": {
+          "titles": {
+            "login": "Login",
+            "registration": "Registration"
+          },
+          "labels": {
+            "email": "Email",
+            "password": "Password",
+            "repeatPassword": "Repeat Password"
+          }
+        },
+        "main": {
+          "titles": {
+            "popular": "Most popular",
+            "upcoming": "Most upcoming"
+          }
+        },
+        "movies": {
+          "labels": {
+            "year": "Year",
+            "withGenres": "With genres",
+            "withoutGenres": "Without genres",
+            "sortBy": "Sort by",
+            "voteAverageMoreThen": "Vote average more then"
+          },
+          "sortingValues": {
+            "popularity": "popularity",
+            "release_date": "release date",
+            "revenue": "revenue",
+            "title": "title",
+            "vote_average": "vote average",
+            "vote_count": "vote count"
+          }
+        },
+        "movie": {
+          "releaseDate": "Release date",
+          "rating": "Rating"
+        },
+        "wishlists": {
+          "deleteConfirmation": "Are you sure you want to delete the {{name}} wishlist?"
+        }
+      },
+      "btns": {
+        "submit": "Submit",
+        "toggle": "Go to {{page}}",
+        "login": "Login",
+        "registration": "Registration",
+        "logout": "Logout",
+        "showMore": "Show More",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "save": "Save",
+        "rename": "Rename",
+        "addWishlist": "Add wishlist",
+        "addToWishlist": "Add to wishlist"
+      },
+      "menu": {
+        "main": "Main",
+        "movies": "Discover movies",
+        "wishlists": "My wishlists"
+      }
+    }
+  }
+}

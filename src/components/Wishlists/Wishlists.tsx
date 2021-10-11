@@ -5,6 +5,7 @@ import React, { useCallback, useState } from "react";
 import { Button, Grid, Paper, Typography } from "@material-ui/core";
 import { Add, RotateLeft } from "@material-ui/icons";
 import styles from "./Wishlists.module.scss";
+import { useTranslation } from "react-i18next";
 
 export interface IWishlist {
   _id: string;
@@ -17,6 +18,7 @@ export interface IWishlistsQuery {
 }
 
 const Wishlists: React.FC = () => {
+  const { t } = useTranslation();
   const { data, refetch } = useQuery<IWishlistsQuery>(GET_WISHLISTS);
   const [isCreation, setIsCreation] = useState<boolean>(false);
   const toggleCreation = useCallback(() => setIsCreation((value) => !value), [])
@@ -30,7 +32,7 @@ const Wishlists: React.FC = () => {
       <Paper className={styles.header}>
         <Typography variant="h5">Wishlists</Typography>
         <Button variant="outlined" startIcon={isCreation ? <RotateLeft /> :  <Add />} onClick={toggleCreation} >
-          {isCreation ? "Cancel" : "Add wishlist"}
+          {t(`btns.${isCreation ? "cancel" : "addWishlist"}`)}
         </Button>
       </Paper>
       <Grid container spacing={"10"}>

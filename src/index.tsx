@@ -1,11 +1,11 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache, from } from "@apollo/client";
-import App from './components/App/App';
+import App from "./components/App/App";
 import { onError } from "@apollo/client/link/error";
 
-import './styles/common.scss';
+import "./styles/common.scss";
 import { routes } from "./constants/routes";
 import { UserProvider } from "./components/UserContext/UserContext";
 import { commonErrorHandler } from "./utils/errorHandlers";
@@ -15,7 +15,7 @@ const link = createHttpLink({
   uri: "http://localhost:4000/",
   credentials: "include",
 });
-const errorLink = onError(({ graphQLErrors, networkError, forward }) => {
+const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
      graphQLErrors.forEach(commonErrorHandler);
    }
@@ -42,5 +42,5 @@ ReactDOM.render(
       </UserProvider>
     </Router>
   </ApolloProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

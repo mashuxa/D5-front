@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/client";
 import { CREATE_WISHLIST, DELETE_WISHLIST, UPDATE_WISHLIST } from "../../../queries/wishlist";
 import { NavLink } from "react-router-dom";
 import { paths } from "../../../constants/routes";
+import { useTranslation } from "react-i18next";
 
 export interface IWishlistProps {
   id?: string;
@@ -13,7 +14,8 @@ export interface IWishlistProps {
   reset: () => void;
 }
 
-const WishlistField: React.FC<IWishlistProps> = ({ id, name = '', reset }) => {
+const WishlistField: React.FC<IWishlistProps> = ({ id, name = "", reset }) => {
+  const { t } = useTranslation();
   const [createWishlist] = useMutation(CREATE_WISHLIST);
   const [updateWishlist] = useMutation(UPDATE_WISHLIST);
   const [deleteWishlist] = useMutation(DELETE_WISHLIST);
@@ -42,10 +44,10 @@ const WishlistField: React.FC<IWishlistProps> = ({ id, name = '', reset }) => {
   return (
     <>
       <Dialog open={isOpenConfirmation} onClose={toggleConfirmation}>
-        <DialogTitle>{`Are you sure you want to delete the "${name}" wishlist?`}</DialogTitle>
+        <DialogTitle>{t("pages.wishlists.deleteConfirmation", { name })}</DialogTitle>
         <DialogActions>
-          <Button onClick={toggleConfirmation} startIcon={<RotateLeft />}>Cancel</Button>
-          <Button onClick={handleDelete} startIcon={<Delete />} color="error">Delete</Button>
+          <Button onClick={toggleConfirmation} startIcon={<RotateLeft />}>{t("btns.cancel")}</Button>
+          <Button onClick={handleDelete} startIcon={<Delete />} color="error">{t("btns.delete")}</Button>
         </DialogActions>
       </Dialog>
       <Paper className={styles.wrapper}>
@@ -53,10 +55,10 @@ const WishlistField: React.FC<IWishlistProps> = ({ id, name = '', reset }) => {
           {isEditable ? <TextField value={value} onChange={handleChange} variant="standard" /> : name}
         </div>
         <Button className={styles.btn} variant="outlined" startIcon={isEditable ? <Save /> : <Edit />} onClick={toggleEditForm}>
-          {isEditable ? "Save" : "Rename"}
+          {t(`btns.${isEditable ? "save" : "rename"}`)}
         </Button>
         <Button className={styles.btn}  variant="outlined" onClick={toggleConfirmation} startIcon={<Delete />} color="error">
-          Delete
+          {t("btns.delete")}
         </Button>
         {id && (
           <Button
@@ -65,9 +67,9 @@ const WishlistField: React.FC<IWishlistProps> = ({ id, name = '', reset }) => {
             onClick={toggleConfirmation}
             startIcon={<Visibility />}
             component={NavLink}
-            to={paths.wishlist.replace(':id', id.toString())}
+            to={paths.wishlist.replace(":id", id.toString())}
           >
-            Show
+            {t("btns.showMore")}
           </Button>
         )}
       </Paper>

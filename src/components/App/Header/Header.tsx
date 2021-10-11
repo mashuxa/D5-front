@@ -8,8 +8,10 @@ import { NavLink } from "react-router-dom";
 import { STORAGE_KEY_ID } from "../../../constants/common";
 import { useLazyQuery } from "@apollo/client";
 import { LOGOUT } from "../../../queries/user";
+import { useTranslation } from "react-i18next";
 
 const Header: React.FC = () => {
+  const { t } = useTranslation();
   const { user, setUser } = useContext(UserContext);
   const [logOut] = useLazyQuery(LOGOUT);
 
@@ -25,9 +27,9 @@ const Header: React.FC = () => {
       <Toolbar>
         <List className={styles.list}>
           {routes.map(({ hide, authorizedOnly, path, key, icon }) =>
-            <MenuItem key={key} hide={hide || (authorizedOnly && !user)} path={path} icon={icon}>{key}</MenuItem>)}
+            <MenuItem key={key} hide={hide || (authorizedOnly && !user)} path={path} icon={icon} name={key} />)}
           <ListItem button {...authLinkProps}>
-            <ListItemText primary={user ? 'Logout' : 'Login'}/>
+            <ListItemText primary={t(`btns.${user ? "logout" : "login"}`)}/>
           </ListItem>
         </List>
       </Toolbar>

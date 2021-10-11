@@ -10,7 +10,7 @@ const PasswordField: React.FC<TextFieldProps> = ({ type, ...props }) => {
   return (
     <TextField
       {...props}
-      type={showPassword ? 'text' : 'password'}
+      type={showPassword ? "text" : "password"}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end" onClick={togglePasswordVisibility}>

@@ -12,6 +12,7 @@ import { DELETE_MOVIE_FROM_WISHLIST } from "../../../queries/wishlist";
 import { NavLink } from "react-router-dom";
 import { paths } from "../../../constants/routes";
 import styles from "./Movie.module.scss";
+import { useTranslation } from "react-i18next";
 
 interface IWishlistItemProps {
   id: number;
@@ -20,6 +21,7 @@ interface IWishlistItemProps {
 }
 
 const Movie: React.FC<IWishlistItemProps> = ({ id, wishlistId, refetch }) => {
+  const { t } = useTranslation();
   const [deleteMovieFromWishlist] = useMutation(DELETE_MOVIE_FROM_WISHLIST);
   const handleDelete = useCallback(async () => {
     await deleteMovieFromWishlist({ variables: { id: wishlistId, movieId: id } });
@@ -34,8 +36,12 @@ const Movie: React.FC<IWishlistItemProps> = ({ id, wishlistId, refetch }) => {
         </Typography>
       </CardContent>
       <CardActions className={styles.actions}>
-        <Button size="small" onClick={handleDelete} startIcon={<Delete />} color="error" variant="outlined">Delete</Button>
-        <Button className={styles.btn} size="small" component={NavLink} to={paths.movie.replace(':id', id.toString())} variant="outlined">Show More</Button>
+        <Button size="small" onClick={handleDelete} startIcon={<Delete />} color="error" variant="outlined">
+          {t("btns.delete")}
+        </Button>
+        <Button className={styles.btn} size="small" component={NavLink} to={paths.movie.replace(":id", id.toString())} variant="outlined">
+          {t("btns.showMore")}
+        </Button>
       </CardActions>
     </Card>
   );

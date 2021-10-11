@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { ArrowDropUp, ArrowDropDown } from "@material-ui/icons";
-import { useFormik } from 'formik';
+import { useFormik } from "formik";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIES_BY_FILTER } from "../../queries/movie";
 import { GET_GENRES } from "../../queries/genres";
@@ -19,6 +19,7 @@ import sortValues from "../../constants/sortValues";
 import MovieCard, { IMoviesResult } from "../MovieCard/MovieCard";
 import Pagination from "../Pagination/Pagination";
 import styles from "./Movies.module.scss";
+import { useTranslation } from "react-i18next";
 
 interface IGenre {
   id: number;
@@ -40,24 +41,25 @@ const initialValues = {
   withGenres: [],
   withoutGenres: [],
   voteAverage: 5,
-  sortBy: sortValues[0]
+  sortBy: `${sortValues[0]}.desc`
 };
 const years = getRangeYear(new Date().getFullYear(), OLDEST_YEAR);
 
 const Movies: React.FC = () => {
+  const { t } = useTranslation();
   const [page, setPage] = useState<number>(1);
   const { data: genresData } = useQuery<IGenresQuery>(GET_GENRES);
   const genres = useMemo(() => genresData?.genres.genres || [], [genresData?.genres.genres]);
   const formik = useFormik({ initialValues, onSubmit: console.warn });
-  const handleSliderChange = useCallback((_, value) => formik.setFieldValue('voteAverage', value), [formik]);
+  const handleSliderChange = useCallback((_, value) => formik.setFieldValue("voteAverage", value), [formik]);
   const { data: moviesData } = useQuery<IMoviesByFilterQuery>(GET_MOVIES_BY_FILTER, {
     variables: {
       filters: {
         page,
         sort_by: formik.values.sortBy,
         year: formik.values.year,
-        with_genres: formik.values.withGenres.join(','),
-        without_genres: formik.values.withoutGenres.join(','),
+        with_genres: formik.values.withGenres.join(","),
+        without_genres: formik.values.withoutGenres.join(","),
         vote_average: {
           gte: formik.values.voteAverage,
         }
@@ -71,44 +73,44 @@ const Movies: React.FC = () => {
       <Grid container>
         <Grid className={styles.wrapper} item xs={12} sm={3}>
           <FormControl className={styles.item} fullWidth>
-            <InputLabel>Year</InputLabel>
+            <InputLabel>{t("pages.movies.labels.year")}</InputLabel>
             <Select
               name="year"
-              value={formik.values.year || ''}
-              label="Year"
+              value={formik.values.year || ""}
+              label={t("pages.movies.labels.year")}
               onChange={formik.handleChange}
             >
               {years.map((year) => <MenuItem key={year} value={year}>{year}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl className={styles.item} fullWidth>
-            <InputLabel>With genres</InputLabel>
+            <InputLabel>{t("pages.movies.labels.withGenres")}</InputLabel>
             <Select
               disabled={!genres.length}
               multiple
               name="withGenres"
               value={formik.values.withGenres}
-              label="With genres"
+              label={t("pages.movies.labels.withGenres")}
               onChange={formik.handleChange}
             >
               {genres.map(({ id, name }) => <MenuItem key={id} value={id}>{name}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl className={styles.item} fullWidth>
-            <InputLabel>Without genres</InputLabel>
+            <InputLabel>{t("pages.movies.labels.withoutGenres")}</InputLabel>
             <Select
               disabled={!genres.length}
               multiple
               name="withoutGenres"
               value={formik.values.withoutGenres}
-              label="Without genres"
+              label={t("pages.movies.labels.withoutGenres")}
               onChange={formik.handleChange}
             >
               {genres.map(({ id, name }) => <MenuItem key={id} value={id}>{name}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl className={styles.item} fullWidth>
-            <Typography>Vote average more then:</Typography>
+            <Typography>{t("pages.movies.labels.voteAverageMoreThen")}:</Typography>
             <Slider
               value={formik.values.voteAverage}
               onChange={handleSliderChange}
@@ -120,19 +122,23 @@ const Movies: React.FC = () => {
             />
           </FormControl>
           <FormControl className={styles.item} fullWidth>
-            <InputLabel>Sort by</InputLabel>
+            <InputLabel>{t("pages.movies.labels.sortBy")}</InputLabel>
             <Select
               name="sortBy"
               value={formik.values.sortBy}
-              label="Sort by"
+              label={t("pages.movies.labels.sortBy")}
               onChange={formik.handleChange}
             >
-              {sortValues.map((value, i) => (
-                <MenuItem key={value} value={value}>
-                  {value}
-                  {i % 2 ? <ArrowDropUp/> : <ArrowDropDown/>}
+              {sortValues.map((value, i) => ([
+                <MenuItem key={`${value}.desc`} value={`${value}.desc`}>
+                  {t(`pages.movies.sortingValues.${value}`)}
+                  <ArrowDropDown/>
+                </MenuItem>,
+                <MenuItem key={`${value}.asc`} value={`${value}.asc`}>
+                  {t(`pages.movies.sortingValues.${value}`)}
+                  <ArrowDropUp/>
                 </MenuItem>
-              ))}
+              ]))}
             </Select>
           </FormControl>
         </Grid>

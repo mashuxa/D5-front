@@ -5,6 +5,7 @@ import { useLazyQuery } from "@apollo/client";
 import { GET_USER } from "../../queries/user";
 import { STORAGE_KEY_ID } from "../../constants/common";
 import { UserContext } from "../UserContext/UserContext";
+import "resources/i18n";
 
 const App: React.FC = ({ children }) => {
   const [getUserData, { data }] = useLazyQuery(GET_USER);
@@ -27,7 +28,7 @@ const App: React.FC = ({ children }) => {
 
   return (
     <>
-      <Header/>
+      <Header />
       {children}
     </>
   );

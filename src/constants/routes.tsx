@@ -1,19 +1,19 @@
-import Login from '../components/Login/Login';
-import Main from '../components/Main/Main';
-import Movies from '../components/Movies/Movies';
-import Movie from '../components/Movie/Movie';
-import Wishlists from '../components/Wishlists/Wishlists';
-import Wishlist from '../components/Wishlist/Wishlist';
+import Login from "../components/Login/Login";
+import Main from "../components/Main/Main";
+import Movies from "../components/Movies/Movies";
+import Movie from "../components/Movie/Movie";
+import Wishlists from "../components/Wishlists/Wishlists";
+import Wishlist from "../components/Wishlist/Wishlist";
 import { Dashboard, Favorite, LocalMovies } from "@material-ui/icons";
 
 export const paths = {
-  login: '/login',
-  signup: '/signup',
-  main: '/',
-  movies: '/movies',
-  movie: '/movies/:id',
-  wishlists: '/wishlists',
-  wishlist: '/wishlists/:id',
+  login: "/login",
+  signup: "/signup",
+  main: "/",
+  movies: "/movies",
+  movie: "/movies/:id",
+  wishlists: "/wishlists",
+  wishlist: "/wishlists/:id",
 };
 
 export const routes = [
@@ -21,7 +21,7 @@ export const routes = [
     component: Login,
     exact: true,
     hide: true,
-    key: 'login',
+    key: "login",
     path: paths.login,
     authorizedOnly: false,
   },
@@ -29,7 +29,7 @@ export const routes = [
     component: Main,
     exact: true,
     hide: false,
-    key: 'main',
+    key: "main",
     path: paths.main,
     icon: <Dashboard />,
     authorizedOnly: false,
@@ -38,7 +38,7 @@ export const routes = [
     component: Movies,
     exact: true,
     hide: false,
-    key: 'movies',
+    key: "movies",
     path: paths.movies,
     icon: <LocalMovies />,
     authorizedOnly: false,
@@ -47,7 +47,7 @@ export const routes = [
     component: Movie,
     exact: true,
     hide: true,
-    key: 'movie',
+    key: "movie",
     path: paths.movie,
     authorizedOnly: false,
   },
@@ -55,7 +55,7 @@ export const routes = [
     component: Wishlists,
     exact: true,
     hide: false,
-    key: 'wishlists',
+    key: "wishlists",
     path: paths.wishlists,
     icon: <Favorite color="action" />,
     authorizedOnly: true,
@@ -64,7 +64,7 @@ export const routes = [
     component: Wishlist,
     exact: true,
     hide: true,
-    key: 'wishlist',
+    key: "wishlist",
     path: paths.wishlist,
     authorizedOnly: true,
   },

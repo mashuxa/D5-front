@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from "react";
 import { TextField, Button, Paper, Typography, Divider } from "@material-ui/core";
-import { useFormik } from 'formik';
-import styles from './Login.module.scss';
+import { useFormik } from "formik";
+import styles from "./Login.module.scss";
 import { useMutation } from "@apollo/client";
 import { LOGIN, REGISTRATION } from "../../queries/user";
 import { UserContext } from "../UserContext/UserContext";
@@ -10,6 +10,7 @@ import { paths } from "../../constants/routes";
 import { STORAGE_KEY_ID } from "../../constants/common";
 import PasswordField from "./PasswordField/PasswordField";
 import validation from "../../utils/validation";
+import { useTranslation } from "react-i18next";
 
 interface IFormValues {
   email: string,
@@ -17,12 +18,13 @@ interface IFormValues {
 }
 
 const initialValues = {
-  email: '',
-  password: '',
-  repeatPassword: '',
+  email: "",
+  password: "",
+  repeatPassword: "",
 };
 
 const Login: React.FC = () => {
+  const { t } = useTranslation();
   const [login] = useMutation(LOGIN);
   const [registration] = useMutation(REGISTRATION);
   const { setUser } = useContext(UserContext);
@@ -52,10 +54,10 @@ const Login: React.FC = () => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <Paper className={styles.wrapper}>
-        <Typography variant="h5">{`${isLogin ? 'Login' : 'Registration'}:`}</Typography>
+        <Typography variant="h5">{t(`pages.login.titles.${isLogin ? "login" : "registration"}:`)}</Typography>
         <TextField
           name="email"
-          label="Email"
+          label={t("pages.login.labels.email")}
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
@@ -65,7 +67,7 @@ const Login: React.FC = () => {
           fullWidth
           id="password"
           name="password"
-          label="Password"
+          label={t("pages.login.labels.password")}
           value={formik.values.password}
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
@@ -76,7 +78,7 @@ const Login: React.FC = () => {
             fullWidth
             id="repeatPassword"
             name="repeatPassword"
-            label="Repeat Password"
+            label={t("pages.login.labels.repeatPassword")}
             value={formik.values.repeatPassword}
             onChange={formik.handleChange}
             error={formik.touched.repeatPassword && Boolean(formik.errors.repeatPassword)}
@@ -84,10 +86,12 @@ const Login: React.FC = () => {
           />
         )}
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Submit
+          {t("btns.submit")}
         </Button>
         <Divider/>
-        <Button onClick={toggleForm}>{`go to ${isLogin ? 'registration' : 'login'}`}</Button>
+        <Button onClick={toggleForm}>
+          {t(`btns.${ isLogin ? "registration" : "login" }`)}
+        </Button>
       </Paper>
     </form>
   );
